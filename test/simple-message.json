@@ -1,0 +1,17 @@
+{
+    "message": {
+        "subject": "Test email",
+        "body": {
+            "contentType": "Text",
+            "content": "Whaddup, world!"
+        },
+        "toRecipients": [
+            {
+                "emailAddress": {
+                "address": "powell-mike@outlook.com"
+                }
+            }
+        ]
+    },
+    "saveToSentItems": "false"
+}
