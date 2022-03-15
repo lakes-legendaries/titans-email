@@ -46,4 +46,5 @@ In this repo:
 #. Run `auth/get-token.sh`. This will create a :code:`secrets/token` file,
    containing your authentication token.
 
-#. Test by running :code:`test/send.sh`
+#. Test by running :code:`test/send.sh`, updating the recipient email to your
+   target test email.
