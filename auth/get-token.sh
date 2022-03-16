@@ -4,7 +4,7 @@
 set -e
 
 # load secrets
-. ~/secrets/titans-emailclient
+. ~/secrets/titans-email-creds
 
 # load code from file
 CODE="$(cat secrets/code)"

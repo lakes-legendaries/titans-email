@@ -4,7 +4,7 @@
 set -e
 
 # load secrets
-. ~/secrets/titans-emailclient
+. ~/secrets/titans-email-creds
 
 # load token from file
 REFRESH_TOKEN=$(python -c \
