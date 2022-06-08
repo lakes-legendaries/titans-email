@@ -37,14 +37,18 @@ In the Azure portal:
 
 In this repo:
 
+#. Make sure you have a :code:`SECRETS_DIR` environmental variable set, e.g.
+   :code:`~/secrets`.
+
 #. Run :code:`auth/get-code.sh`. Follow the website it points you to, and
    authenticate with your office account. It'll redirect you to an error page.
    On that page, look at the url, and copy the :code:`code` parameter from the
    URL (i.e. the portion that reads :code:`&code=...&`). Paste that code into a
-   :code:`secrets/code` file in this repo.
+   :code:`$SECRETS_DIR/titans-email-code` file in this repo.
 
-#. Run `auth/get-token.sh`. This will create a :code:`secrets/token` file,
-   containing your authentication token.
+#. Run `auth/get-token.sh`. This will create a
+   :code:`$SECRETS_DIR/titans-email-token-local` file, containing your
+   authentication token.
 
 #. Test by running :code:`test/send.sh`, updating the recipient email to your
    target test email.

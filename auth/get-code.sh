@@ -3,8 +3,8 @@
 # exit on error
 set -e
 
-# load secrets
-. ~/secrets/titans-email-creds
+# load credentials
+. $SECRETS_DIR/titans-email-creds
 
 # build URL
 URL=$(echo \
