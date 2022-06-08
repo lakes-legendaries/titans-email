@@ -11,7 +11,7 @@ fi
 
 # check arguments
 if [ $# -ne 1 ]; then
-    echo "Usage: email/send.sh email_json_fname"
+    echo "Usage: send.sh email_json_fname"
     exit 1
 fi
 EMAIL_JSON_FNAME="$1"

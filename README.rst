@@ -50,5 +50,38 @@ In this repo:
    :code:`$SECRETS_DIR/titans-email-token-local` file, containing your
    authentication token.
 
-#. Test by running :code:`test/send.sh`, updating the recipient email to your
-   target test email.
+**************
+Sending Emails
+**************
+
+We recommend pip-installing this package, and then sending emails using the
+command-line interface:
+
+.. code-block:: bash
+
+   python -m titansemail yamlconfig
+
+where :code:`yamlconfig` is a configuration yaml file that is unpacked to
+initialize :code:`titansemail.sender.SendEmails`. An example configuration yaml
+file would look like:
+
+.. code-block:: yaml
+
+   subject: We're Back!
+   body: 2022-07/body.html
+   attachments: [
+     2022-07/box.png,
+     2022-07/divider.png,
+     2022-07/final_judgment.png,
+     2022-07/logo.png,
+   ]
+
+where :code:`2022-07/body.html` is the name of an html file you want to send,
+and the attachments are names of attachments you want to attach.
+
+Please note that any attachments can be referenced in :code:`body` via their
+cid:
+
+.. code-block:: html
+
+   <img src="cid:logo">
