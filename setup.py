@@ -19,7 +19,7 @@ if __name__ == '__main__':
         packages=find_packages(),
 
         # requirements
-        install_requires=['numpy'],
+        install_requires=['numpy', 'pyyaml'],
         python_requires='>=3.9',
 
         # include MANIFEST.in files
