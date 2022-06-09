@@ -86,6 +86,9 @@ cid:
 
    <img src="cid:logo">
 
+and the string :code:`#|EMAIL|#` will be replaced with the receipient's email
+address.
+
 ************
 Dev: Testing
 ************
