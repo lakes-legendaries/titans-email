@@ -6,7 +6,7 @@ if __name__ == '__main__':
 
         # standard info
         name='titansemail',
-        version='0.0.0',
+        version='0.0.1',
         description='package for mass-sending emails using ms graph api',
         author='Mike Powell PhD',
         author_email='mike@lakeslegendaries.com',
