@@ -26,7 +26,7 @@ class SendEmails:
         Email body. If this is a filename ending in :code:`.html`, then this
         will be read in and treated like a file. Otherwise, the text contained
         here will be used as the message body.
-    attachments: list[str], optional, default=None
+    attachments: list[str], optional, default=[]
         Attachment filenames
     contacts_backup_dir: str, optional, default='contacts'
         Subdirectory (within :code:`contacts_dir`) to put contacts backups in
@@ -47,7 +47,7 @@ class SendEmails:
         subject: str,
         body: str,
         *,
-        attachments: list[str] = None,
+        attachments: list[str] = [],
         contacts_backup_dir: str = 'contacts',
         contacts_dir: str = '/mnt/d/OneDrive/Titans Of Eden/biz',
         contacts_fname: str = 'contacts.txt',
