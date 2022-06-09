@@ -25,7 +25,7 @@ In the Azure portal:
 #. Go to :code:`API Permissions`, and from Microsoft Graph the Delegated
    Permission of Mail.Send.
 
-#. Create a :code:`~/secrets/titans-emailclient` file that looks like:
+#. Create a :code:`~/secrets/titans-email-creds` file that looks like:
 
    .. code-block:: bash
       
