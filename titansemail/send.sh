@@ -28,8 +28,8 @@ get_field() {
 }
 
 # download email token (to make sure we're up-to-date)
-USE_CI=$( [ $# -gt 0 ] && [ "$2" == "--ci" ] && echo 1)
-if [ ! -z "$USE_CI" ]; then
+USE_CI=$( [ $# -gt 0 ] && [ "$2" == "--ci" ] && echo 1 || echo 0)
+if [ "$USE_CI" == 1 ]; then
     SECRETS_URL=https://titansfileserver.blob.core.windows.net/webserver/secrets
     SECRETS_FILE=titans-email-token
     SECRETS_SAS=$(cat $SECRETS_DIR/titans-fileserver-sas)
@@ -55,7 +55,7 @@ curl -sH "Content-Type: application/x-www-form-urlencoded" \
 > $SECRETS_DIR/titans-email-token-local
 
 # upload refreshed token
-if [ ! -z "$USE_CI" ]; then
+if [ "$USE_CI" == 1 ]; then
     azcopy cp "$SECRETS_LOCAL" "$SECRETS_URL/$SECRETS_FILE$SECRETS_SAS"
 fi
 
