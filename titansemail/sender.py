@@ -23,7 +23,9 @@ class SendEmails:
     subject: str
         Email subject
     body: str
-        HTML file containing email body
+        Email body. If this is a filename ending in :code:`.html`, then this
+        will be read in and treated like a file. Otherwise, the text contained
+        here will be used as the message body.
     attachments: list[str], optional, default=None
         Attachment filenames
     contacts_backup_dir: str, optional, default='contacts'
@@ -54,12 +56,15 @@ class SendEmails:
         use_ci: bool = False,
     ):
         # create email dictionary
+        is_html = body.endswith('.html')
+        if is_html:
+            body = open(body, 'r').read()
         email_dict = {
             'message': {
                 'subject': subject,
                 'body': {
-                    'contentType': 'HTML',
-                    'content': open(body, 'r').read(),
+                    'contentType': 'HTML' if is_html else 'Text',
+                    'content': body,
                 },
                 'attachments': [],
             },
