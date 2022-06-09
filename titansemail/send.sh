@@ -10,8 +10,8 @@ if [ -z "$SECRETS_DIR" ]; then
 fi
 
 # check arguments
-if [ $# -ne 1 ]; then
-    echo "Usage: send.sh email_json_fname"
+if [ $# -lt 1 ]; then
+    echo "Usage: send.sh email_json_fname [--ci]"
     exit 1
 fi
 EMAIL_JSON_FNAME="$1"
@@ -26,6 +26,16 @@ get_field() {
     )
     python -c "$CMD"
 }
+
+# download email token (to make sure we're up-to-date)
+USE_CI=$( [ $# -gt 0 ] && [ "$2" == "--ci" ] && echo 1)
+if [ ! -z "$USE_CI" ]; then
+    SECRETS_URL=https://titansfileserver.blob.core.windows.net/webserver/secrets
+    SECRETS_FILE=titans-email-token
+    SECRETS_SAS=$(cat $SECRETS_DIR/titans-fileserver-sas)
+    SECRETS_LOCAL=$SECRETS_DIR/$SECRETS_FILE
+    azcopy cp "$SECRETS_URL/$SECRETS_FILE$SECRETS_SAS" "$SECRETS_LOCAL"
+fi
 
 # load email credentials
 . $SECRETS_DIR/titans-email-creds
@@ -43,6 +53,11 @@ DATA=$(echo \
 curl -sH "Content-Type: application/x-www-form-urlencoded" \
     -d "$DATA" https://login.microsoftonline.com/$TENANT/oauth2/v2.0/token \
 > $SECRETS_DIR/titans-email-token-local
+
+# upload refreshed token
+if [ ! -z "$USE_CI" ]; then
+    azcopy cp "$SECRETS_LOCAL" "$SECRETS_URL/$SECRETS_FILE$SECRETS_SAS"
+fi
 
 # send email with new token
 curl -sX POST \

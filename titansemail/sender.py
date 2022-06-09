@@ -36,6 +36,8 @@ class SendEmails:
         Send to all recipients on email list
     temp_dir: str, optional, default='.tmp'
         Temporary directory for downloading files from azure
+    use_ci: bool, optional, default=False
+        upload/download email tokens to sync with server
     """
     def __init__(
         self,
@@ -49,6 +51,7 @@ class SendEmails:
         contacts_fname: str = 'contacts.txt',
         send_all: bool = False,
         temp_dir: str = '.tmp',
+        use_ci: bool = False,
     ):
         # create email dictionary
         email_dict = {
@@ -192,13 +195,13 @@ class SendEmails:
 
             # invoke send bash script
             try:
-                run(
-                    [
-                        join(dirname(realpath(__file__)), 'send.sh'),
-                        'email.json',
-                    ],
-                    check=True,
-                )
+                run_cmd = [
+                    join(dirname(realpath(__file__)), 'send.sh'),
+                    'email.json',
+                ]
+                if use_ci:
+                    run_cmd.append('--ci')
+                run(run_cmd, check=True)
             except Exception:
                 print(f'Sending to {recipient} failed.')
 
