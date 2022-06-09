@@ -85,3 +85,15 @@ cid:
 .. code-block:: html
 
    <img src="cid:logo">
+
+************
+Dev: Testing
+************
+
+Send a test email:
+
+.. code-block:: bash
+
+   python tests/send_test.py
+
+This can also be invoked with :code:`pytest`
