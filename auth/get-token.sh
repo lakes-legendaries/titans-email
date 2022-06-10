@@ -18,4 +18,4 @@ DATA=$(echo \
 # fetch token
 curl -sH "Content-Type: application/x-www-form-urlencoded" \
     -d "$DATA" https://login.microsoftonline.com/$TENANT/oauth2/v2.0/token \
-> $SECRETS_DIR/titans-email-token-local
+> $SECRETS_DIR/titans-email-token

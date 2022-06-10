@@ -47,7 +47,7 @@ In this repo:
    :code:`$SECRETS_DIR/titans-email-code` file in this repo.
 
 #. Run `auth/get-token.sh`. This will create a
-   :code:`$SECRETS_DIR/titans-email-token-local` file, containing your
+   :code:`$SECRETS_DIR/titans-email-token` file, containing your
    authentication token.
 
 **************

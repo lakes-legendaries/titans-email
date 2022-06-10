@@ -21,7 +21,7 @@ get_field() {
     CMD=$(echo \
         "import json; " \
         "print(json.loads(" \
-            "open('$SECRETS_DIR/titans-email-token-local', 'r').read()" \
+            "open('$SECRETS_DIR/titans-email-token', 'r').read()" \
         ")['$1'])" \
     )
     python -c "$CMD"
@@ -52,7 +52,7 @@ DATA=$(echo \
 # refresh email token
 curl -sH "Content-Type: application/x-www-form-urlencoded" \
     -d "$DATA" https://login.microsoftonline.com/$TENANT/oauth2/v2.0/token \
-> $SECRETS_DIR/titans-email-token-local
+> $SECRETS_DIR/titans-email-token
 
 # upload refreshed token
 if [ "$USE_CI" == 1 ]; then
