@@ -34,7 +34,7 @@ if [ "$USE_CI" == 1 ]; then
     SECRETS_FILE=titans-email-token
     SECRETS_SAS=$(cat $SECRETS_DIR/titans-fileserver-sas)
     SECRETS_LOCAL=$SECRETS_DIR/$SECRETS_FILE
-    azcopy cp "$SECRETS_URL/$SECRETS_FILE$SECRETS_SAS" "$SECRETS_LOCAL"
+    azcopy cp "$SECRETS_URL/$SECRETS_FILE$SECRETS_SAS" "$SECRETS_LOCAL" &> /dev/null
 fi
 
 # load email credentials
@@ -56,7 +56,7 @@ curl -sH "Content-Type: application/x-www-form-urlencoded" \
 
 # upload refreshed token
 if [ "$USE_CI" == 1 ]; then
-    azcopy cp "$SECRETS_LOCAL" "$SECRETS_URL/$SECRETS_FILE$SECRETS_SAS"
+    azcopy cp "$SECRETS_LOCAL" "$SECRETS_URL/$SECRETS_FILE$SECRETS_SAS"  &> /dev/null
 fi
 
 # send email with new token
