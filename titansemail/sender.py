@@ -28,6 +28,9 @@ class SendEmails:
         here will be used as the message body.
     attachments: list[str], optional, default=[]
         Attachment filenames
+    contacts: str or list[str], optional, default=None
+        specify receipient emails. Ignored if :code:`send_all`. The default
+        receipient is just :code:`mike@lakeslegendaries.com` 
     contacts_backup_dir: str, optional, default='contacts'
         Subdirectory (within :code:`contacts_dir`) to put contacts backups in
     contacts_dir: str, optional, default='/mnt/d/OneDrive/Titans Of Eden/biz'
@@ -48,6 +51,7 @@ class SendEmails:
         body: str,
         *,
         attachments: list[str] = [],
+        contacts: str | list[str] = None,
         contacts_backup_dir: str = 'contacts',
         contacts_dir: str = '/mnt/d/OneDrive/Titans Of Eden/biz',
         contacts_fname: str = 'contacts.txt',
@@ -85,7 +89,10 @@ class SendEmails:
 
         # get recipient list
         if not send_all:
-            contacts = ['mike@lakeslegendaries.com']
+            if not contacts:
+                contacts = ['mike@lakeslegendaries.com']
+            elif type(contacts) is str:
+                contacts = [contacts]
         else:
             # backup contacts
             contacts_fname = f'{contacts_dir}/{contacts_fname}'
