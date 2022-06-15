@@ -30,7 +30,7 @@ class SendEmails:
         Attachment filenames
     contacts: str or list[str], optional, default=None
         specify receipient emails. Ignored if :code:`send_all`. The default
-        receipient is just :code:`mike@lakeslegendaries.com` 
+        receipient is just :code:`mike@lakeslegendaries.com`
     contacts_backup_dir: str, optional, default='contacts'
         Subdirectory (within :code:`contacts_dir`) to put contacts backups in
     contacts_dir: str, optional, default='/mnt/d/OneDrive/Titans Of Eden/biz'
